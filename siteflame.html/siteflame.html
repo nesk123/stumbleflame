@@ -1,0 +1,276 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>Stumble Flame</title>
+<style>
+  /* Reset and base */
+  * {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+  }
+  body {
+    background-color: #000;
+    color: #00aaff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    overflow-x: hidden;
+    cursor: none; /* hide default cursor */
+  }
+  /* Custom cursor */
+  body::before {
+    content: "";
+    position: fixed;
+    top: 0; left: 0;
+    width: 20px;
+    height: 20px;
+    border: 2px solid #00aaff;
+    border-radius: 50%;
+    pointer-events: none;
+    transform: translate(-50%, -50%);
+    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
+    z-index: 10000;
+  }
+  body:hover::before {
+    border-color: #0077cc;
+  }
+  /* Cursor follow script will update position */
+
+  /* Header with symbol and title */
+  header {
+    display: flex;
+    align-items: center;
+    padding: 15px 30px;
+    position: relative;
+    border-bottom: 2px solid #00aaff;
+  }
+  /* Symbol placeholder: a blue flame shape using SVG inline */
+  .symbol {
+    width: 100px;
+    height: 90px;
+    margin-right: 15px;
+    flex-shrink: 0;
+  }
+  /* Symbol image for buttons and header */
+  .symbol-img {
+    width: 50px;
+    height: 50px;
+    margin-right: 10px;
+    flex-shrink: 0;
+  }
+  /* Symbol image for buttons and header */
+  .symbol-sfl {
+    width: 150px;
+    height: 120px;
+    margin-right: 10px;
+    flex-shrink: 90;
+  }
+  .symbol svg {
+    width: 100%;
+    height: 100%;
+    fill: #00aaff;
+    filter: drop-shadow(0 0 9px #00aaff);
+  }
+  /* Title text */
+  .title {
+    text-align: right;
+    font-weight: 900;
+    font-size: 3rem;
+    color: #00aaff;
+    user-select: none;
+}
+
+
+
+
+
+  /* Main content container */
+  main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: calc(100vh - 70px);
+    text-align: center;
+    animation: fadeInUp 1s ease forwards;
+    padding: 0 20px;
+  }
+  /* Welcome message */
+  .welcome-message {
+    font-size: 2.4rem;
+    margin-bottom: 10px;
+    color: #00aaff;
+    font-weight: 900;
+    line-height: 1.3;
+  }
+  /* Buttons */
+  .btn {
+    cursor: pointer;
+    font-weight: 700;
+    font-size: 1.3rem;
+    border: none;
+    padding: 12px 30px;
+    margin: 5px 0 20px 0;
+    border-radius: 6px;
+    transition: all 0.3s ease;
+    user-select: none;
+    display: inline-flex;
+    align-items: center;
+    text-decoration: none;
+  }
+  /* Black button with blue text */
+  .btn-black-blue {
+    background-color: #000;
+    color: #00aaff;
+    border: 2px solid #00aaff;
+    padding: 60px 90px; /* Aumenta o espaço interno (vertical horizontal) */
+    font-size: 1.8rem; /* Aumenta o tamanho do texto */
+    width: 370px; /* Deixa o botão mais largo (opcional) */
+    height: 90px; /* Deixa o botão mais alto (opcional) */
+    text-align: center;
+}
+
+  .btn-black-blue:hover {
+    background-color: #00aaff;
+    color: #000;
+    box-shadow: 0 0 50px #00aaff;
+    transform: scale(1.30);
+  }
+  /* Blue button with black text */
+  .btn-blue-black {
+    background-color: #00aaff;
+    color: #000;
+    border: 2px solid #000;
+    font-size: 1.5rem;
+    padding: 14px 36px;
+  }
+  .btn-blue-black:hover {
+    background-color: #000;
+    color: #00aaff;
+    box-shadow: 0 0 10px #00aaff;
+    transform: scale(1.05);
+  }
+  /* Discord text */
+  .discord-text {
+    margin-top: 20px;
+    font-weight: 900;
+    color: #00aaff;
+    user-select: none;
+    font-size: 2rem;
+  }
+  /* Dev credits in bottom left corner with box */
+  .dev-credits {
+    position: fixed;
+    bottom: 15px;
+    left: 15px;
+    color: #00aaff;
+    font-weight: 700;
+    font-size: 1rem;
+    line-height: 1.3;
+    text-align: left;
+    user-select: none;
+    white-space: pre-line;
+    border: 2px solid #00aaff;
+    padding: 10px 15px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 8px;
+    max-width: 250px;
+  }
+  /* Developer names in purple */
+  .dev-name-purple {
+    color: rgb(89, 0, 255);
+  }
+  /* Developer names in purple */
+  .dev-title-white {
+    color: rgb(255, 255, 255);
+  }
+  /* Developer names in purple */
+  .dev-title-orange {
+    color: rgb(255, 145, 0);
+  }
+
+  /* Animations */
+  @keyframes fadeInUp {
+    0% {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+    100% {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+</style>
+</head>
+<body>
+<header>
+  <div class="symbol" aria-label="Flame symbol" role="sfl">
+    <img src="https://cdn.discordapp.com/attachments/1362628210101194983/1366533989833375785/image-Photoroom.png?ex=68114b74&amp;is=680ff9f4&amp;hm=697f9998bb52ea7677d7d202ffae54d355888c0bba3ac590e7a3875b0d1ccaf6&amp;" alt="Title Symbol" class="symbol-sfl" />
+  </div>
+  <div class="title" style="width: 25%;"><span class="dev-title-orange" >STUMBLE </span> <span class="dev-title-white" > FLAME</span></div>
+</header>
+<main>
+  <div class="welcome-message"><strong>SEJA BEM-VINDO(A) AO SITE DA <span class="dev-title-orange">STUMBLE</span> <span class="dev-title-white">FLAME</span>!<br>SE DIVIRTA COM O NOSSO JOGO!</strong></div>
+  <a href="https://www.mediafire.com/file/j3wg3haodlkoj1p/elim+pc.rar/file" target="_blank" rel="noopener" class="btn btn-black-blue" style="size: 1000%;">ELIMINATION FOR WINDOWS</a>
+  <div class="discord-text"><strong>ENTRE NO NOSSO DISCORD!</strong></div>
+  <a href="https://discord.gg/PVkEn78qSa" target="_blank" rel="noopener" class="btn btn-blue-black">
+    <img src="https://cdn.discordapp.com/attachments/1362628210101194983/1366541516197068821/sAAAAASUVORK5CYII.png?ex=68115276&is=681000f6&hm=8bb4d12ed349a749defda3b20b2a51e7b78613ad77e187d470d8e80873c5d91a&" alt="Button Symbol" class="symbol-img" />
+    STUMBLE FLAME
+  </a>
+</main>
+<div class="dev-credits">
+  DEVS: <span class="dev-name-purple ">@NESKPOMBO</span> <span class="dev-name-purple ">@SILVA7TBEST</span><br />
+  SITE POR: <span class="dev-name-purple ">@NESKPOMBO</span><br />
+  SE <span class="dev-name-purple ">DIVIRTA!!</span>
+</div>
+<script>
+  // Custom cursor follow
+  const cursor = document.body;
+  document.addEventListener('mousemove', e => {
+    const cursorBefore = document.body.style.getPropertyValue('--cursor-x');
+    document.body.style.setProperty('--cursor-x', e.clientX + 'px');
+    document.body.style.setProperty('--cursor-y', e.clientY + 'px');
+    const before = document.querySelector('body::before');
+    // Instead of trying to style pseudo element, we move a real element
+  });
+
+  // Instead of pseudo element, create a real cursor element for better control
+  const cursorEl = document.createElement('div');
+  cursorEl.style.position = 'fixed';
+  cursorEl.style.top = '0';
+  cursorEl.style.left = '0';
+  cursorEl.style.width = '20px';
+  cursorEl.style.height = '20px';
+  cursorEl.style.border = '2px solid #00aaff';
+  cursorEl.style.borderRadius = '50%';
+  cursorEl.style.pointerEvents = 'none';
+  cursorEl.style.transform = 'translate(-50%, -50%)';
+  cursorEl.style.transition = 'width 0.2s ease, height 0.2s ease, border-color 0.2s ease';
+  cursorEl.style.zIndex = '10000';
+  document.body.appendChild(cursorEl);
+
+  document.addEventListener('mousemove', e => {
+    cursorEl.style.left = e.clientX + 'px';
+    cursorEl.style.top = e.clientY + 'px';
+  });
+
+  // Button hover effect to enlarge cursor
+  const buttons = document.querySelectorAll('.btn');
+  buttons.forEach(btn => {
+    btn.addEventListener('mouseenter', () => {
+      cursorEl.style.width = '40px';
+      cursorEl.style.height = '40px';
+      cursorEl.style.borderColor = '#0077cc';
+    });
+    btn.addEventListener('mouseleave', () => {
+      cursorEl.style.width = '20px';
+      cursorEl.style.height = '20px';
+      cursorEl.style.borderColor = '#00aaff';
+    });
+  });
+
+  // Optional: entrance animation handled by CSS fadeInUp
+</script>
+</body>
+</html>
