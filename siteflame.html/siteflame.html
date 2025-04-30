@@ -1,276 +1,137 @@
 <!DOCTYPE html>
-<html lang="pt-BR">
+<html lang="en" class="scroll-smooth">
 <head>
-<meta charset="UTF-8" />
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>Stumble Flame</title>
-<style>
-  /* Reset and base */
-  * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  body {
-    background-color: #000;
-    color: #00aaff;
-    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-    overflow-x: hidden;
-    cursor: none; /* hide default cursor */
-  }
-  /* Custom cursor */
-  body::before {
-    content: "";
-    position: fixed;
-    top: 0; left: 0;
-    width: 20px;
-    height: 20px;
-    border: 2px solid #00aaff;
-    border-radius: 50%;
-    pointer-events: none;
-    transform: translate(-50%, -50%);
-    transition: width 0.2s ease, height 0.2s ease, border-color 0.2s ease;
-    z-index: 10000;
-  }
-  body:hover::before {
-    border-color: #0077cc;
-  }
-  /* Cursor follow script will update position */
-
-  /* Header with symbol and title */
-  header {
-    display: flex;
-    align-items: center;
-    padding: 15px 30px;
-    position: relative;
-    border-bottom: 2px solid #00aaff;
-  }
-  /* Symbol placeholder: a blue flame shape using SVG inline */
-  .symbol {
-    width: 100px;
-    height: 90px;
-    margin-right: 15px;
-    flex-shrink: 0;
-  }
-  /* Symbol image for buttons and header */
-  .symbol-img {
-    width: 50px;
-    height: 50px;
-    margin-right: 10px;
-    flex-shrink: 0;
-  }
-  /* Symbol image for buttons and header */
-  .symbol-sfl {
-    width: 150px;
-    height: 120px;
-    margin-right: 10px;
-    flex-shrink: 90;
-  }
-  .symbol svg {
-    width: 100%;
-    height: 100%;
-    fill: #00aaff;
-    filter: drop-shadow(0 0 9px #00aaff);
-  }
-  /* Title text */
-  .title {
-    text-align: right;
-    font-weight: 900;
-    font-size: 3rem;
-    color: #00aaff;
-    user-select: none;
-}
-
-
-
-
-
-  /* Main content container */
-  main {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-    height: calc(100vh - 70px);
-    text-align: center;
-    animation: fadeInUp 1s ease forwards;
-    padding: 0 20px;
-  }
-  /* Welcome message */
-  .welcome-message {
-    font-size: 2.4rem;
-    margin-bottom: 10px;
-    color: #00aaff;
-    font-weight: 900;
-    line-height: 1.3;
-  }
-  /* Buttons */
-  .btn {
-    cursor: pointer;
-    font-weight: 700;
-    font-size: 1.3rem;
-    border: none;
-    padding: 12px 30px;
-    margin: 5px 0 20px 0;
-    border-radius: 6px;
-    transition: all 0.3s ease;
-    user-select: none;
-    display: inline-flex;
-    align-items: center;
-    text-decoration: none;
-  }
-  /* Black button with blue text */
-  .btn-black-blue {
-    background-color: #000;
-    color: #00aaff;
-    border: 2px solid #00aaff;
-    padding: 60px 90px; /* Aumenta o espaço interno (vertical horizontal) */
-    font-size: 1.8rem; /* Aumenta o tamanho do texto */
-    width: 370px; /* Deixa o botão mais largo (opcional) */
-    height: 90px; /* Deixa o botão mais alto (opcional) */
-    text-align: center;
-}
-
-  .btn-black-blue:hover {
-    background-color: #00aaff;
-    color: #000;
-    box-shadow: 0 0 50px #00aaff;
-    transform: scale(1.30);
-  }
-  /* Blue button with black text */
-  .btn-blue-black {
-    background-color: #00aaff;
-    color: #000;
-    border: 2px solid #000;
-    font-size: 1.5rem;
-    padding: 14px 36px;
-  }
-  .btn-blue-black:hover {
-    background-color: #000;
-    color: #00aaff;
-    box-shadow: 0 0 10px #00aaff;
-    transform: scale(1.05);
-  }
-  /* Discord text */
-  .discord-text {
-    margin-top: 20px;
-    font-weight: 900;
-    color: #00aaff;
-    user-select: none;
-    font-size: 2rem;
-  }
-  /* Dev credits in bottom left corner with box */
-  .dev-credits {
-    position: fixed;
-    bottom: 15px;
-    left: 15px;
-    color: #00aaff;
-    font-weight: 700;
-    font-size: 1rem;
-    line-height: 1.3;
-    text-align: left;
-    user-select: none;
-    white-space: pre-line;
-    border: 2px solid #00aaff;
-    padding: 10px 15px;
-    background-color: rgba(0, 0, 0, 0.7);
-    border-radius: 8px;
-    max-width: 250px;
-  }
-  /* Developer names in purple */
-  .dev-name-purple {
-    color: rgb(89, 0, 255);
-  }
-  /* Developer names in purple */
-  .dev-title-white {
-    color: rgb(255, 255, 255);
-  }
-  /* Developer names in purple */
-  .dev-title-orange {
-    color: rgb(255, 145, 0);
-  }
-
-  /* Animations */
-  @keyframes fadeInUp {
-    0% {
-      opacity: 0;
-      transform: translateY(30px);
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>STUMBLE FLAME</title>
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" />
+  <script src="https://cdn.tailwindcss.com"></script>
+  <style>
+    /* Custom colors for orange and black theme */
+    :root {
+      --orange: #ff6600;
+      --black: #000000;
     }
-    100% {
-      opacity: 1;
-      transform: translateY(0);
+    body {
+      font-family: 'Montserrat', sans-serif;
+      background-color: var(--black);
+      color: var(--orange);
     }
-  }
-</style>
+    a {
+      transition: color 0.3s ease;
+    }
+    a:hover {
+      color: #fff;
+    }
+    .btn-primary {
+      background-color: var(--orange);
+      color: var(--black);
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      box-shadow: 0 4px 6px rgba(255, 102, 0, 0.4);
+      transition: background-color 0.3s ease, color 0.3s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      text-transform: uppercase;
+    }
+    .btn-primary:hover {
+      background-color: var(--black);
+      color: var(--orange);
+      box-shadow: 0 6px 8px rgba(255, 102, 0, 0.7);
+    }
+    .btn-secondary {
+      border: 2px solid var(--orange);
+      color: var(--orange);
+      font-weight: 700;
+      padding: 0.75rem 1.5rem;
+      border-radius: 0.375rem;
+      text-transform: uppercase;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      transition: background-color 0.3s ease, color 0.3s ease;
+    }
+    .btn-secondary:hover {
+      background-color: var(--orange);
+      color: var(--black);
+    }
+    header {
+      border-bottom: 2px solid var(--orange);
+    }
+    .feature-card {
+      background-color: rgba(255, 102, 0, 0.1);
+      border: 1px solid var(--orange);
+      border-radius: 0.5rem;
+      padding: 1.5rem;
+      transition: background-color 0.3s ease;
+    }
+    .feature-card:hover {
+      background-color: rgba(255, 102, 0, 0.3);
+    }
+  </style>
 </head>
-<body>
-<header>
-  <div class="symbol" aria-label="Flame symbol" role="sfl">
-    <img src="https://cdn.discordapp.com/attachments/1362628210101194983/1366533989833375785/image-Photoroom.png?ex=68114b74&amp;is=680ff9f4&amp;hm=697f9998bb52ea7677d7d202ffae54d355888c0bba3ac590e7a3875b0d1ccaf6&amp;" alt="Title Symbol" class="symbol-sfl" />
-  </div>
-  <div class="title" style="width: 25%;"><span class="dev-title-orange" >STUMBLE </span> <span class="dev-title-white" > FLAME</span></div>
-</header>
-<main>
-  <div class="welcome-message"><strong>SEJA BEM-VINDO(A) AO SITE DA <span class="dev-title-orange">STUMBLE</span> <span class="dev-title-white">FLAME</span>!<br>SE DIVIRTA COM O NOSSO JOGO!</strong></div>
-  <a href="https://www.mediafire.com/file/j3wg3haodlkoj1p/elim+pc.rar/file" target="_blank" rel="noopener" class="btn btn-black-blue" style="size: 1000%;">ELIMINATION FOR WINDOWS</a>
-  <div class="discord-text"><strong>ENTRE NO NOSSO DISCORD!</strong></div>
-  <a href="https://discord.gg/PVkEn78qSa" target="_blank" rel="noopener" class="btn btn-blue-black">
-    <img src="https://cdn.discordapp.com/attachments/1362628210101194983/1366541516197068821/sAAAAASUVORK5CYII.png?ex=68115276&is=681000f6&hm=8bb4d12ed349a749defda3b20b2a51e7b78613ad77e187d470d8e80873c5d91a&" alt="Button Symbol" class="symbol-img" />
-    STUMBLE FLAME
-  </a>
-</main>
-<div class="dev-credits">
-  DEVS: <span class="dev-name-purple ">@NESKPOMBO</span> <span class="dev-name-purple ">@SILVA7TBEST</span><br />
-  SITE POR: <span class="dev-name-purple ">@NESKPOMBO</span><br />
-  SE <span class="dev-name-purple ">DIVIRTA!!</span>
-</div>
-<script>
-  // Custom cursor follow
-  const cursor = document.body;
-  document.addEventListener('mousemove', e => {
-    const cursorBefore = document.body.style.getPropertyValue('--cursor-x');
-    document.body.style.setProperty('--cursor-x', e.clientX + 'px');
-    document.body.style.setProperty('--cursor-y', e.clientY + 'px');
-    const before = document.querySelector('body::before');
-    // Instead of trying to style pseudo element, we move a real element
-  });
+<body class="flex flex-col min-h-screen">
+  <header class="container mx-auto flex justify-between items-center py-6 px-4 md:px-0">
+    <h1 class="text-4xl font-extrabold uppercase tracking-wide">STUMBLE FLAME</h1>
+    <nav class="uppercase font-semibold text-lg flex space-x-6">
+      <a href="https://www.mediafire.com/file/j3wg3haodlkoj1p/elim+pc.rar/file" target="_blank" rel="noopener" class="btn-primary transition duration-300 ease-in-out transform active:scale-95 active:opacity-70">
+        Baixe Agora
+      </a>
+      <a href="developers.html" class="btn-secondary transition duration-300 ease-in-out transform active:scale-95 active:opacity-70">
+        Developers
+      </a>
+    </nav>
+  </header>
 
-  // Instead of pseudo element, create a real cursor element for better control
-  const cursorEl = document.createElement('div');
-  cursorEl.style.position = 'fixed';
-  cursorEl.style.top = '0';
-  cursorEl.style.left = '0';
-  cursorEl.style.width = '20px';
-  cursorEl.style.height = '20px';
-  cursorEl.style.border = '2px solid #00aaff';
-  cursorEl.style.borderRadius = '50%';
-  cursorEl.style.pointerEvents = 'none';
-  cursorEl.style.transform = 'translate(-50%, -50%)';
-  cursorEl.style.transition = 'width 0.2s ease, height 0.2s ease, border-color 0.2s ease';
-  cursorEl.style.zIndex = '10000';
-  document.body.appendChild(cursorEl);
+  <main class="container mx-auto flex-grow px-4 md:px-0 py-12">
+    <section class="text-center max-w-3xl mx-auto mb-16">
+      <h2 class="text-5xl font-extrabold mb-6">Welcome to STUMBLE FLAME</h2>
+      <p class="text-xl leading-relaxed mb-8">
+        A private version of the popular game Stumble Guys with exclusive features and a premium experience.
+      </p>
+      <div class="space-x-6">
+        <a href="https://www.mediafire.com/file/j3wg3haodlkoj1p/elim+pc.rar/file" target="_blank" rel="noopener" class="btn-primary">
+          <i class="fas fa-download"></i> Download Now
+        </a>
+      <a href="developers.html" class="btn-secondary">Developers</a>
+      </div>
+    </section>
 
-  document.addEventListener('mousemove', e => {
-    cursorEl.style.left = e.clientX + 'px';
-    cursorEl.style.top = e.clientY + 'px';
-  });
+    <section id="features" class="max-w-5xl mx-auto mb-20">
+      <h3 class="text-3xl font-bold uppercase mb-8 border-b-2 border-orange pb-3">Exclusive Features</h3>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 text-orange">
+        <div class="feature-card">
+          <h4 class="text-2xl font-semibold mb-3">Optimized Performance</h4>
+          <p>Experience the game with exclusive performance improvements and optimizations.</p>
+        </div>
+        <div class="feature-card">
+          <h4 class="text-2xl font-semibold mb-3">Advanced Customization</h4>
+          <p>Exclusive custom options to personalize your gameplay.</p>
+        </div>
+        <div class="feature-card">
+          <h4 class="text-2xl font-semibold mb-3">Frequent Updates</h4>
+          <p>Receive regular updates with new features, fixes, and improvements.</p>
+        </div>
+      </div>
+    </section>
 
-  // Button hover effect to enlarge cursor
-  const buttons = document.querySelectorAll('.btn');
-  buttons.forEach(btn => {
-    btn.addEventListener('mouseenter', () => {
-      cursorEl.style.width = '40px';
-      cursorEl.style.height = '40px';
-      cursorEl.style.borderColor = '#0077cc';
-    });
-    btn.addEventListener('mouseleave', () => {
-      cursorEl.style.width = '20px';
-      cursorEl.style.height = '20px';
-      cursorEl.style.borderColor = '#00aaff';
-    });
-  });
+    <section id="download" class="text-center max-w-3xl mx-auto">
+      <h3 class="text-3xl font-bold uppercase mb-6 border-b-2 border-orange pb-3">Ready to Play?</h3>
+      <p class="mb-8">Download STUMBLE FLAME now and enjoy exclusive features!</p>
+      <a href="https://www.mediafire.com/file/j3wg3haodlkoj1p/elim+pc.rar/file" target="_blank" rel="noopener" class="btn-primary text-xl px-10 py-4">
+        Download STUMBLE FLAME
+      </a>
+    </section>
+  </main>
 
-  // Optional: entrance animation handled by CSS fadeInUp
-</script>
+  <footer class="bg-black border-t-2 border-orange py-8 text-center text-orange">
+    <a href="https://discord.gg/PVkEn78qSa" target="_blank" rel="noopener" class="inline-flex items-center justify-center gap-3 bg-orange text-black font-bold py-3 px-6 rounded shadow hover:bg-black hover:text-orange transition uppercase mb-4 mx-auto max-w-xs">
+      <i class="fab fa-discord fa-lg"></i> Join Discord
+    </a>
+    <p class="text-sm">&copy; 2024 STUMBLE FLAME. All rights reserved.</p>
+  </footer>
 </body>
 </html>
